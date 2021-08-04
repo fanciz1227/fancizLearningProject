@@ -16,8 +16,13 @@ public class TestCreateController {
 
     @GetMapping("test")
     public String getCallTest() {
-        List<TestCreateTableEntity> testString = testCreateService.testList();
+        List<TestCreateTableEntity> testString = testCreateService.testGetList();
 
         return testString.get(0).getCreateNm();
+    }
+
+    @GetMapping("test/update")
+    public void testCreate() {
+        testCreateService.testCreate();
     }
 }
