@@ -23,4 +23,8 @@ public class TestCreateTableEntity {
 
     @Column(name = "create_desc")
     private String createDesc;
+
+    public void setCreateDesc(String createDesc){
+        this.createDesc = createDesc;
+    }
 }

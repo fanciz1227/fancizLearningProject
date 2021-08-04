@@ -7,7 +7,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface TestCreateRepository extends JpaRepository<TestCreateTableEntity, Long> {
+public interface TestCreateRepository extends JpaRepository<TestCreateTableEntity, Integer> {
 
     public List<TestCreateTableEntity> findAll();
+
+    public TestCreateTableEntity findById(int id);
 }
