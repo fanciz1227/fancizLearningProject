@@ -1,7 +1,6 @@
 package com.jktoy.fancizToyProject.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +11,8 @@ import javax.persistence.Table;
 @Table(name = "test_create_table")
 @NoArgsConstructor
 @Getter
-public class TestCreateTableEntity {
+@ToString
+public class TestCreateTable {
 
     @Id
     @Column(name = "create_seq")
@@ -27,4 +27,5 @@ public class TestCreateTableEntity {
     public void setCreateDesc(String createDesc){
         this.createDesc = createDesc;
     }
+    public void setCreateNm(String createNm) { this.createNm = createNm; }
 }
