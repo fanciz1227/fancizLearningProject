@@ -1,14 +1,13 @@
 package com.jktoy.fancizToyProject.testJpa.service;
 
-import com.jktoy.fancizToyProject.entity.TestCreateTableEntity;
+import com.jktoy.fancizToyProject.entity.TestCreateTable;
 import com.jktoy.fancizToyProject.repository.TestCreateRepository;
-import com.jktoy.fancizToyProject.testJpa.dto.TestCreateTableDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TestCreateService {
@@ -20,8 +19,8 @@ public class TestCreateService {
      * jpa find Entity data
      * @return
      */
-    public List<TestCreateTableEntity> testGetList() {
-        List<TestCreateTableEntity> list = testCreateRepository.findAll();
+    public List<TestCreateTable> testGetList() {
+        List<TestCreateTable> list = testCreateRepository.findAll();
 
         return list;
     }
@@ -31,8 +30,6 @@ public class TestCreateService {
      */
     @Transactional
     public void testCreate() {
-        TestCreateTableEntity findEntity = testCreateRepository.findById(1);
-
-        findEntity.setCreateDesc("Update Test");
+        Optional<TestCreateTable> findEntity = testCreateRepository.findById(1);
     }
 }

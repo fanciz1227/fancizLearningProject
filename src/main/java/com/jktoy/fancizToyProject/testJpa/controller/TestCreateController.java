@@ -1,6 +1,6 @@
 package com.jktoy.fancizToyProject.testJpa.controller;
 
-import com.jktoy.fancizToyProject.entity.TestCreateTableEntity;
+import com.jktoy.fancizToyProject.entity.TestCreateTable;
 import com.jktoy.fancizToyProject.testJpa.service.TestCreateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +16,7 @@ public class TestCreateController {
 
     @GetMapping("test")
     public String getCallTest() {
-        List<TestCreateTableEntity> testString = testCreateService.testGetList();
+        List<TestCreateTable> testString = testCreateService.testGetList();
 
         return testString.get(0).getCreateNm();
     }
