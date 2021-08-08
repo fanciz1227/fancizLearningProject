@@ -4,7 +4,6 @@ import com.jktoy.fancizToyProject.entity.TestCreateTable;
 import com.jktoy.fancizToyProject.repository.TeamInfoRepository;
 import com.jktoy.fancizToyProject.repository.TestCreateRepository;
 import com.jktoy.fancizToyProject.repository.UserRepository;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +11,6 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -31,9 +28,6 @@ public class JpaTest {
 
     @Autowired
     private UserRepository userRepository;
-
-    @Autowired
-    private TeamInfoRepository teamInfoRepository;
 
     @Test
     public void getTestCreateTable() {
@@ -86,6 +80,5 @@ public class JpaTest {
     public void getUserJoinTeamInfo() {
         
         userRepository.findAll().forEach(System.out::println);
-        //teamInfoRepository.findAll().forEach(System.out::println);
     }
 }
