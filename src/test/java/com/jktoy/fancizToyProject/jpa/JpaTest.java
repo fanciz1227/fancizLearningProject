@@ -1,7 +1,9 @@
 package com.jktoy.fancizToyProject.jpa;
 
 import com.jktoy.fancizToyProject.entity.TestCreateTable;
+import com.jktoy.fancizToyProject.repository.TeamInfoRepository;
 import com.jktoy.fancizToyProject.repository.TestCreateRepository;
+import com.jktoy.fancizToyProject.repository.UserRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -26,6 +28,12 @@ public class JpaTest {
 
     @Autowired
     private TestCreateRepository testCreateRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private TeamInfoRepository teamInfoRepository;
 
     @Test
     public void getTestCreateTable() {
@@ -66,5 +74,18 @@ public class JpaTest {
         TestCreateTable testCreateTableAfterDelete = testCreateRepository.findById(testId).orElse(null);
 
         assertNull(testCreateTableAfterDelete);
+    }
+
+    /**
+     * user, teamInfo 테이블 간 1:1 조회 테스트
+     * Entity에서 @OneToOne을 통해 join 데이터 출력
+     * team_id라는 동일한 컬럼으로 join 했을때 mapping을 못해주는 오류가 발생한다..
+     * referencedColumnName 옵션과 insertable, updateble 옵션을 false로 줘서 조인에 사용하는 컬럼으로만 인식할 수 있게 선언해야 제대로 동작한다.
+     */
+    @Test
+    public void getUserJoinTeamInfo() {
+        
+        userRepository.findAll().forEach(System.out::println);
+        //teamInfoRepository.findAll().forEach(System.out::println);
     }
 }
