@@ -16,7 +16,7 @@ fanciz Toy Project
 2. HikariCp Pool Start Complete
 3. jpa repository setting & entity data select
 
-## 2021-08-04 ~ 06
+## 2021-08-04 ~ 08
 1. Without @setter annotaion to Entity update test
 - Entity 혹은 dto 사용시에 @setter를 통한 무분별한 set을 왜 지양하는가?
 - 무분별한 @setter 사용을 방지하기 위해 어떤 노력이 필요한가. 오브젝트 전체를 모두 업데이트한다면 @setter를 사용해도 되는걸까..?
@@ -27,3 +27,11 @@ fanciz Toy Project
 2. Jpa test using Junit5 Test
 - 통합 테스트 : @SpringBootTest
 - 단위 테스트 : @WebMvcTest(controller), @DataJpaTest(jpa), @RestClientTest(REST), @JsonTest(json)
+
+3. Jpa join Test
+- @OnoToOne 1:1 join Test
+- 즉시 로딩(EAGER), 지연 로딩(LAZY)의 차이는 무엇인가
+- EAGER는 데이터를 select 할때 한번의 join된 Entity 모두 검색해온다. 한방에 쿼리문으로 다 긁어온다고 생각하면 될 듯
+- 반대로 LAZY는 한번에 모두 가져오지 않고 join된 Entity를 get 해올때 비로소 select 쿼리가 발생한다.
+- EAGER는 join된 Entity가 많아질수록 부하가 커진다. LAZY는 select 쿼리가 여러번 발생하지만 Entity가 직접 데이터를 가져와야할때 비로소 쿼리가 발생하기 때문에 원하는 시점에 Query 호출을 구현할 수 있다.
+- 따라서 프로세스에 따른 부하가 어떻게 진행되냐에 따라 LAZY와 EAGER를 적절히 분배해야한다. 하지만 특별히 부하가 생기는 상황이 아니면 LAZY를 주로 활용하자.
