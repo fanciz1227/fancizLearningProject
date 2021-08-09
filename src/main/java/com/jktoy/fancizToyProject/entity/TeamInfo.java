@@ -2,27 +2,30 @@ package com.jktoy.fancizToyProject.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Table(name = "tb_team_info")
 @Entity
 @NoArgsConstructor
 @Getter
-@ToString
 public class TeamInfo {
 
     @Id
+    @GeneratedValue
     @Column(name = "team_id")
     private int teamId;
 
     @Column(name = "team_name")
     private String teamName;
 
-    @Column(name = "team_info")
-    private String teamInfo;
+    @Column(name = "team_description")
+    private String teamDescription;
+
+    @OneToMany(mappedBy = "teamInfo")
+    private List<User> userList;
 
     @Column(name = "reg_date")
     private LocalDateTime regDate;
