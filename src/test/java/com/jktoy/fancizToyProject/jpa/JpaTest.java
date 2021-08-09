@@ -29,6 +29,9 @@ public class JpaTest {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private TeamInfoRepository teamInfoRepository;
+
     @Test
     public void getTestCreateTable() {
         testCreateRepository.findAll().forEach(System.out::println);
@@ -80,5 +83,19 @@ public class JpaTest {
     public void getUserJoinTeamInfo() {
         
         userRepository.findAll().forEach(System.out::println);
+    }
+
+    /**
+     * 부모 Entity에서 @OneToMany,@ManyToOne 단방향 테스트
+     * mappedBy를 통한 양방향 테스트 -> 부모 Entity의 @OneToMany로 연결시 @JoinColumn을 제외하고 mappedBy 속성으로 자식 Entity와 관계를 설정한다.
+     * 양방향 연결시 데이터의 주체를 확인하기 어려울 수 있다. 연결관계를 항상 명확히 하는게 좋다.
+     * 현재 무한루프에 빠져버렸다.. 이유가 뭘까. -> lombok @toString 사용시 무한루프에 빠진다.
+     * Entity에서 @toString은 사용을 자제하고 builder로 생성자를 만들어 사용하거나 DTO를 이용한 데이터 처리를 하도록하자.
+     * Entity를 직접 반환하는 것은 피하고 최대한 DTO를 통한 변환을 하도록 하자.
+     */
+    @Test
+    public void getTeamInfoJoinUser() {
+
+        teamInfoRepository.findAll().forEach(System.out::println);
     }
 }

@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FancizToyProjectApplication {
+public class FancizLearningProjectApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FancizToyProjectApplication.class, args);
+		SpringApplication.run(FancizLearningProjectApplication.class, args);
 	}
 
 }

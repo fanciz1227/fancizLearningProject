@@ -2,7 +2,6 @@ package com.jktoy.fancizToyProject.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -11,10 +10,10 @@ import java.time.LocalDateTime;
 @Entity
 @NoArgsConstructor
 @Getter
-@ToString
 public class User {
 
     @Id
+    @GeneratedValue
     private int userSeq;
 
     private String userName;
@@ -23,12 +22,12 @@ public class User {
 
     private String userPhoneNumber;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "team_id", referencedColumnName = "team_id", insertable=false, updatable=false)
-    private TeamInfo teamInfo;
-
     @Column(name = "team_id")
     private int teamId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "team_id", referencedColumnName = "team_id", insertable=false, updatable=false)
+    private TeamInfo teamInfo;
 
     private LocalDateTime regDate;
 
