@@ -1,5 +1,7 @@
 package com.jktoy.fancizToyProject.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -9,8 +11,10 @@ import java.util.List;
 
 @Table(name = "tb_team_info")
 @Entity
+@AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Builder
 public class TeamInfo {
 
     @Id
@@ -32,4 +36,8 @@ public class TeamInfo {
 
     @Column(name = "updt_date")
     private LocalDateTime updtDate;
+
+    public void setTeamDescription(String teamDescription) {
+        this.teamDescription = teamDescription;
+    }
 }
