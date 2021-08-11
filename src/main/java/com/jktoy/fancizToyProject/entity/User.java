@@ -25,10 +25,6 @@ public class User {
     @Column(name = "team_id")
     private int teamId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "team_id", referencedColumnName = "team_id", insertable=false, updatable=false)
-    private TeamInfo teamInfo;
-
     private LocalDateTime regDate;
 
     private LocalDateTime updtDate;

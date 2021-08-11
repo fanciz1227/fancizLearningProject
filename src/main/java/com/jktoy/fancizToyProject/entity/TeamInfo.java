@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Table(name = "tb_team_info")
 @Entity
@@ -27,9 +26,6 @@ public class TeamInfo {
 
     @Column(name = "team_description")
     private String teamDescription;
-
-    @OneToMany(mappedBy = "teamInfo")
-    private List<User> userList;
 
     @Column(name = "reg_date")
     private LocalDateTime regDate;

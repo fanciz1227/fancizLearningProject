@@ -16,7 +16,7 @@ fanciz Toy Project
 2. HikariCp Pool Start Complete
 3. jpa repository setting & entity data select
 
-## 2021-08-04 ~ 09
+## 2021-08-04 ~ 10
 1. Without @setter annotaion to Entity update test
 - Entity 혹은 dto 사용시에 @setter를 통한 무분별한 set을 왜 지양하는가?
 - 무분별한 @setter 사용을 방지하기 위해 어떤 노력이 필요한가. 오브젝트 전체를 모두 업데이트한다면 @setter를 사용해도 되는걸까..?
@@ -52,3 +52,9 @@ fanciz Toy Project
 - 영속성 컨텍스트는 트랜잭션의 범위에서만 동작하기 때문에 생성/수정/삭제에 대한 쿼리를 저장소에 저장해두었다가 트랜잭션이 끝나는 순간 처리한다. 처리가 완료되면 캐싱된 데이터는 초기화 된다.
 - 신규로 생성된 Entity는 관리 대상이 아니기 때문에 별도로 repository를 통해 영속성 처리를 해야한다. -> dirty checking 사용 불가
 - Flush는 쓰기 지연된 저장소에 쿼리를 쌓지 않고 DB에 바로 실행한다. 이때 영속화를 진행하는것이 아닌 저장소에 쌓여있던 쿼리를 실행만 하는 과정이다. 트랜잭션이 끝나는 시점에 영속화가 진행된다.
+
+## 2021-08-11
+1. Jpa와 동적쿼리
+- Querydsl guide -> https://querydsl.com/static/querydsl/3.4.0/reference/ko-KR/html_single/#preface
+- Querydsl setting
+- Querydsl -> JPQL -> SQL
