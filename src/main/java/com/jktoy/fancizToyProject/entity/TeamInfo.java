@@ -1,9 +1,6 @@
 package com.jktoy.fancizToyProject.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -14,6 +11,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Builder
+@ToString
 public class TeamInfo {
 
     @Id
@@ -26,6 +24,9 @@ public class TeamInfo {
 
     @Column(name = "team_description")
     private String teamDescription;
+
+    @Column(name = "team_phone")
+    private String teamPhone;
 
     @Column(name = "reg_date")
     private LocalDateTime regDate;

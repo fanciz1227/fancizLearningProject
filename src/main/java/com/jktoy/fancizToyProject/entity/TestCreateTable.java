@@ -11,7 +11,6 @@ import javax.persistence.Table;
 @Table(name = "test_create_table")
 @NoArgsConstructor
 @Getter
-@ToString
 public class TestCreateTable {
 
     @Id
