@@ -53,8 +53,20 @@ fanciz Toy Project
 - 신규로 생성된 Entity는 관리 대상이 아니기 때문에 별도로 repository를 통해 영속성 처리를 해야한다. -> dirty checking 사용 불가
 - Flush는 쓰기 지연된 저장소에 쿼리를 쌓지 않고 DB에 바로 실행한다. 이때 영속화를 진행하는것이 아닌 저장소에 쌓여있던 쿼리를 실행만 하는 과정이다. 트랜잭션이 끝나는 시점에 영속화가 진행된다.
 
-## 2021-08-11
+## 2021-08-11 ~ 12
 1. Jpa와 동적쿼리
 - Querydsl guide -> https://querydsl.com/static/querydsl/3.4.0/reference/ko-KR/html_single/#preface
 - Querydsl setting
-- Querydsl -> JPQL -> SQL
+- Querydsl -> JPQL -> SQL 의 단계를 거쳐 처리 된다.
+
+2. Querydsl을 통한 join 처리
+- Querydsl을 통해 join 처리를 할 수 있다. Entity에서 연관관계를 따로 맺지 않아도 JpqQueryFactory의 join을 사용한 처리가 가능하다.
+- List를 사용시 Entity의 class를 사용할 수 없어 Tuple을 사용해야하는데 현업에서 Tuple을 사용하게 될 경우 mapping되는 데이터가 명확하지 않아 혼란을 야기할 수 있다.
+- 따라서 Dto를 통한 mapping을 생활화 하는게 좋다.
+- @Setter를 통한 Projections.bean, Field를 통한 Projections.fields, 생성자를 통한 Projections.constructor, @QueryProjection 통한 new QUserDto()
+- 위 4가지 방법중 @Setter는 최대한 지향하기 때문에 꼭 필요한 상황이 아니면 피하자.
+- Field는 Dto에 선언된 필드값을 삽입하게 되는데 private이여도 접근이 가능한건 projection 내부의 리플렉션 api를 사용하기 때문에 가능하다. 다만 생성자를 통한게 더 좋아보이므로? 패스
+- 생성자를 통한 Projections.constructor은 생성자를 생성하고 mapping을 해주는데 현업에서 가장 사용하기 좋은 예 일것 같다. @Builder를 통한 생성자를 선언해도 이용이 가능하기 때문에 사용해야하는 값이 늘어날수록 @Builder와 매핑해서 사용하면 좋을듯하다.
+- 다만 당연하게도 DB table column이 추가되면 문제가 발생할 수 있는데 jpaQueryFactory에서만 컬럼을 추가해서 조회할 경우 런타임에 오류가 발생하여 개발자가 미리 오류를 인지하기 힘들다.
+- @QueryProjection을 이용할때는 위와 같은 컬럼문제가 컴파일에서 발견되어 개발자가 사전 인식하기 쉽지만 QDto가 생성되어야 하기 때문에 Querydsl의 의존성이 들어간다.
+- @QueryProjection도 나름 잘활용하면 좋겠지만 현업에서는 생성자를 더 이용하는 경우가 많다고 느껴져서 constructor를 이용하는게 제일 좋아보인다. 다만 꼭 컬럼추가나 변경에 대한 대비는 사전에 미리미리 체크하자.

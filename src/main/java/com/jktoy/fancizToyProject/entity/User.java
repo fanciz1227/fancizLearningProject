@@ -2,6 +2,7 @@ package com.jktoy.fancizToyProject.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 @Entity
 @NoArgsConstructor
 @Getter
+@ToString
 public class User {
 
     @Id
@@ -24,6 +26,8 @@ public class User {
 
     @Column(name = "team_id")
     private int teamId;
+
+    private String userStatus;
 
     private LocalDateTime regDate;
 
