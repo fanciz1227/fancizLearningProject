@@ -27,6 +27,10 @@ public class User {
     @Column(name = "team_id")
     private int teamId;
 
+    @ManyToOne
+    @JoinColumn(name = "team_id", insertable = false, updatable = false)
+    private TeamInfo teamInfo;
+
     private String userStatus;
 
     private LocalDateTime regDate;

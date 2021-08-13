@@ -53,7 +53,7 @@ fanciz Toy Project
 - 신규로 생성된 Entity는 관리 대상이 아니기 때문에 별도로 repository를 통해 영속성 처리를 해야한다. -> dirty checking 사용 불가
 - Flush는 쓰기 지연된 저장소에 쿼리를 쌓지 않고 DB에 바로 실행한다. 이때 영속화를 진행하는것이 아닌 저장소에 쌓여있던 쿼리를 실행만 하는 과정이다. 트랜잭션이 끝나는 시점에 영속화가 진행된다.
 
-## 2021-08-11 ~ 12
+## 2021-08-11 ~ 13
 1. Jpa와 동적쿼리
 - Querydsl guide -> https://querydsl.com/static/querydsl/3.4.0/reference/ko-KR/html_single/#preface
 - Querydsl setting
@@ -69,4 +69,13 @@ fanciz Toy Project
 - 생성자를 통한 Projections.constructor은 생성자를 생성하고 mapping을 해주는데 현업에서 가장 사용하기 좋은 예 일것 같다. @Builder를 통한 생성자를 선언해도 이용이 가능하기 때문에 사용해야하는 값이 늘어날수록 @Builder와 매핑해서 사용하면 좋을듯하다.
 - 다만 당연하게도 DB table column이 추가되면 문제가 발생할 수 있는데 jpaQueryFactory에서만 컬럼을 추가해서 조회할 경우 런타임에 오류가 발생하여 개발자가 미리 오류를 인지하기 힘들다.
 - @QueryProjection을 이용할때는 위와 같은 컬럼문제가 컴파일에서 발견되어 개발자가 사전 인식하기 쉽지만 QDto가 생성되어야 하기 때문에 Querydsl의 의존성이 들어간다.
-- @QueryProjection도 나름 잘활용하면 좋겠지만 현업에서는 생성자를 더 이용하는 경우가 많다고 느껴져서 constructor를 이용하는게 제일 좋아보인다. 다만 꼭 컬럼추가나 변경에 대한 대비는 사전에 미리미리 체크하자.
+- @QueryProjection도 나름 잘활용하거나 상황에 맞는 타입을 쓰면 되는데 현업에서는 생성자를 더 이용하는 경우가 많다고 느껴져서 constructor를 이용하는게 제일 좋아보인다. 다만 꼭 컬럼추가나 변경에 대한 대비는 사전에 미리미리 체크하자.
+
+3. Jpql query Test
+- 반환할 타입이 명확하면 TypedQuery를 그렇지 않으면 Query를 사용한다.
+- Paging 데이터 처리시 FirstResult:조회 시작 위치(0부터 시작), MaxResults:조회 할 데이터의 수
+- Projection Type에 따른 조회해 올 데이터 세팅을 할 수 있다. Entity 전체를 조회 시 영속성컨텍스트에서 관리된다. Embedded로 조회시 Entity가 아닌 값 타입으로 조회하기 때문에 영속성컨텍스트에서 관리되지 않는다. Dto를 생성해 new를 통한 생성자 연결로 매핑할 수 있다.
+- inner, outer, fetch Join에 따른 처리 방법이 있다.
+- 가장 중요한 객체를 통해 다루는 jpa와 관계를 이용해 다루는 DB간의 차이때문에 발생하는 N+1 문제를 해결할 수 있는 하나의 방법이 fetch join이다.
+- fetch join은 모든 연관관계가 매핑된 데이터를 한번에 가져오므로 별도로 설정한 fetchType이 소용없으며 Lazy 또한 먹히지 않는다.
+- 그리고 사용하지 않는 Entity까지 모두 로딩해오기 때문에 속도 저하의 원인이 될 수 있다.
