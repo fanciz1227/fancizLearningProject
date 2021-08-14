@@ -9,7 +9,7 @@ fanciz Toy Project
 
 
 ## 2021-08-01
-1. Toy Project Setting
+1. Learning Project Setting
 
 ## 2021-08-02 ~ 03
 1. Mysql DB connect setting -> jpa, MySql, HikariCP

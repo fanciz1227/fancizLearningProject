@@ -125,4 +125,17 @@ public class JpqlTest {
 
         fetchJoinList.forEach(System.out::println);
     }
+
+    /**
+     * Jpql Sub Query
+     */
+    @Test
+    public void jpqlSubQueryTest() {
+        List<User> subQuery = entityManager
+                .createQuery("SELECT us FROM User us WHERE us.teamId = " +
+                        "(SELECT ti.teamId FROM TeamInfo ti WHERE ti.teamId = 3)", User.class)
+                .getResultList();
+
+        subQuery.forEach(System.out::println);
+    }
 }
