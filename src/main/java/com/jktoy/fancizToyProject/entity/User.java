@@ -12,6 +12,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @ToString
+@NamedQuery(
+        name = "User.findByUserSeq",
+        query = "SELECT us FROM User us WHERE us.userSeq = :userSeq"
+)
 public class User {
 
     @Id

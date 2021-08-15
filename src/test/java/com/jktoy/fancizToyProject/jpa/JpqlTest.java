@@ -128,12 +128,31 @@ public class JpqlTest {
 
     /**
      * Jpql Sub Query
+     * SQL과 다르게 where, having절에서만 사용 가능
      */
     @Test
     public void jpqlSubQueryTest() {
         List<User> subQuery = entityManager
                 .createQuery("SELECT us FROM User us WHERE us.teamId = " +
                         "(SELECT ti.teamId FROM TeamInfo ti WHERE ti.teamId = 3)", User.class)
+                .getResultList();
+
+        subQuery.forEach(System.out::println);
+    }
+
+    /**
+     * 정적 쿼리 (Named Query)
+     * 미리 정의한 쿼리에 이름을 부여해서 필요할 때 사용한다. 한 번 정의하면 변경할 수 없다.
+     * 정적 SQL 생성으로 DB 조회시 성능 최적화가 가능하다.
+     * 어플리케이션 로딩 시점에 JPQL 문법을 체크하고 미리 파싱하여 오류를 빨리 발견할 수 있다.
+     * 사용되는 시점에 파싱된 결과를 재사용하기 때문에 불필요한 재조회가 되지 않아 성능상의 이점이 있을 수 있다.
+     * XML로 별도로 관리하거나 Annotaion보다 먼저 로딩이 가능하게 설정이 가능하다.
+     */
+    @Test
+    public void jpqlNamedQueryTest() {
+        List<User> subQuery = entityManager
+                .createNamedQuery("User.findByUserSeq", User.class)
+                .setParameter("userSeq", 1)
                 .getResultList();
 
         subQuery.forEach(System.out::println);
