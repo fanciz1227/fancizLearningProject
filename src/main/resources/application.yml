@@ -41,3 +41,6 @@ spring:
   h2:
     console:
       enabled: true
+
+  jooq:
+    sql-dialect: mysql
