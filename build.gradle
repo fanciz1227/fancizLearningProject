@@ -31,10 +31,15 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
+	//Querydsl setting
 	implementation('com.querydsl:querydsl-jpa')
 	implementation('com.querydsl:querydsl-apt')
+
+	//Jooq setting
+	implementation 'org.springframework.boot:spring-boot-starter-jooq'
 }
 
+//Querydsl setting
 def querydslSrcDir = "$buildDir/generated/querydsl"
 
 querydsl {

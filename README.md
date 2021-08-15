@@ -55,11 +55,11 @@ fanciz Toy Project
 
 ## 2021-08-11 ~ 13
 1. Jpa와 동적쿼리
-- Querydsl guide -> https://querydsl.com/static/querydsl/3.4.0/reference/ko-KR/html_single/#preface
-- Querydsl setting
-- Querydsl -> JPQL -> SQL 의 단계를 거쳐 처리 된다.
+- Jpa, JPQL, QueryDSL, JOOQ의 사용법 및 차이점을 알아본다.
 
 2. Querydsl을 통한 join 처리
+- Querydsl guide -> https://querydsl.com/static/querydsl/3.4.0/reference/ko-KR/html_single/#preface
+- Querydsl -> JPQL -> SQL 의 단계를 거쳐 처리 된다.
 - Querydsl을 통해 join 처리를 할 수 있다. Entity에서 연관관계를 따로 맺지 않아도 JpqQueryFactory의 join을 사용한 처리가 가능하다.
 - List를 사용시 Entity의 class를 사용할 수 없어 Tuple을 사용해야하는데 현업에서 Tuple을 사용하게 될 경우 mapping되는 데이터가 명확하지 않아 혼란을 야기할 수 있다.
 - 따라서 Dto를 통한 mapping을 생활화 하는게 좋다.
@@ -84,3 +84,7 @@ fanciz Toy Project
 - @NamedQuery는 정적 SQL 생성으로 성능을 최적화 하기 쉽고, 어플리케이션 로딩 시점에 JPQL 문법을 체크하기 때문에 오류 파악이 쉽다.
 - 사용되는 시점에 파싱된 결과를 재사용하기 때문에 불필요한 재조회가 되지 않아 성능상 이점이 있다.
 - XML로 별도로 관리할 수 있다.
+
+4. Jooq Test
+- https://www.jooq.org/
+- Jooq 3.14.13 ,, 의존성 주입은 정상적인데 이상하게 컴파일 하면 오류가 난다.. 뭘까...
