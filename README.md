@@ -53,7 +53,7 @@ fanciz Toy Project
 - 신규로 생성된 Entity는 관리 대상이 아니기 때문에 별도로 repository를 통해 영속성 처리를 해야한다. -> dirty checking 사용 불가
 - Flush는 쓰기 지연된 저장소에 쿼리를 쌓지 않고 DB에 바로 실행한다. 이때 영속화를 진행하는것이 아닌 저장소에 쌓여있던 쿼리를 실행만 하는 과정이다. 트랜잭션이 끝나는 시점에 영속화가 진행된다.
 
-## 2021-08-11 ~ 13
+## 2021-08-11 ~ 16
 1. Jpa와 동적쿼리
 - Jpa, JPQL, QueryDSL, JOOQ의 사용법 및 차이점을 알아본다.
 
@@ -88,3 +88,7 @@ fanciz Toy Project
 4. Jooq Test
 - https://www.jooq.org/
 - Jooq 3.14.13 ,, 의존성 주입은 정상적인데 이상하게 컴파일 하면 오류가 난다.. 뭘까...
+- Jooq 관련 injection들을 추가하고 서버 기동시 DB url을 참고할 수 없다고 뜬다.
+- gradle 6.1~7.0이상 & 최소 JDK 11 일때는 6.0+ 버전을 적용해야한다.
+- jooq 설정을 입력하고 스프링부트를 기동하면 기존 application의 DB 설정을 못읽어오면서 H2 DB를 찾는다.. 찾아보니 한 외국인도 비슷한 문제가 있는듯하다. 버그가 있다는것같은데..
+- https://githubmemory.com/repo/etiennestuder/gradle-jooq-plugin/issues
